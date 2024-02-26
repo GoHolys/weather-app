@@ -19,7 +19,7 @@ interface WeatherFormProps {
 }
 
 export default function WeatherForm({ setData, setIsError }: WeatherFormProps) {
-  const [city, setCity] = useState("London");
+  const [city, setCity] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
