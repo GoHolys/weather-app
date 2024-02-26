@@ -2,13 +2,25 @@ import { WeatherResponse } from "../App";
 
 interface WeatherCardProps {
   data?: WeatherResponse | null;
+  isError: boolean;
 }
 
-export default function WeatherCard({ data }: WeatherCardProps) {
-  if (!data) {
-    return null;
+export default function WeatherCard({ data, isError }: WeatherCardProps) {
+  if (!data && !isError) {
+    return (
+      <p className="flex justify-center p-4">
+        Please start by typing the location
+      </p>
+    );
   }
-  
+
+  if (isError) {
+    return (
+      <p className="flex justify-center p-4">
+        The city name you have entered is invalid please try another one.
+      </p>
+    );
+  }
 
   return (
     <div className="flex flex-col justify-between max-w-[500px] m-auto p-4 text-white gap-20">

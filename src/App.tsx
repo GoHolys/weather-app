@@ -46,11 +46,12 @@ export interface WeatherResponse {
 
 function App() {
   const [data, setData] = useState<WeatherResponse | null>(null);
+  const [isError, setIsError] = useState(false);
 
   return (
     <div className="mt-10">
-      <WeatherForm setData={setData} />
-      <WeatherCard data={data} />
+      <WeatherForm setData={setData} setIsError={setIsError} />
+      <WeatherCard data={data} isError={isError} />
     </div>
   );
 }

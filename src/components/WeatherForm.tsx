@@ -15,9 +15,10 @@ const API_KEY = "c49de5ffc958d288525e011ebeb99f51";
 
 interface WeatherFormProps {
   setData: React.Dispatch<React.SetStateAction<WeatherResponse | null>>;
+  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function WeatherForm({ setData }: WeatherFormProps) {
+export default function WeatherForm({ setData, setIsError }: WeatherFormProps) {
   const [city, setCity] = useState("London");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +31,11 @@ export default function WeatherForm({ setData }: WeatherFormProps) {
     axios
       .get(url)
       .then((res) => {
+        setIsError(false);
         setData(res.data);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setIsError(true);
       });
   };
 
